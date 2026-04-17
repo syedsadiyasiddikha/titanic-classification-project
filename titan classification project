@@ -1,0 +1,33 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, accuracy_score
+
+# Load the dataset directly from a public URL
+url = "https://githubusercontent.com"
+df = pd.read_csv(url)
+
+# Data Preprocessing
+df['Age'].fillna(df['Age'].median(), inplace=True)
+df = pd.get_dummies(df, columns=['Sex'], drop_first=True)
+features = ['Pclass', 'Age', 'SibSp', 'Parch', 'Sex_male']
+X = df[features]
+y = df['Survived']
+
+# Train/Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Algorithm 1: Logistic Regression
+lr_model = LogisticRegression()
+lr_model.fit(X_train, y_train)
+lr_preds = lr_model.predict(X_test)
+
+# Algorithm 2: Random Forest
+rf_model = RandomForestClassifier()
+rf_model.fit(X_train, y_train)
+rf_preds = rf_model.predict(X_test)
+
+# Results
+print("Logistic Regression Accuracy:", accuracy_score(y_test, lr_preds))
+print("Random Forest Accuracy:", accuracy_score(y_test, rf_preds))
