@@ -16,4 +16,4 @@ To predict passenger survival using supervised machine learning.
 | Random Forest | 82% | 0.77 |
 
 ### Conclusion
-The Random Forest model is the better choice for this task as it handles the data complexity more effectively, resulting in higher accuracy and F1-scores.
+The Random Forest model is the better choice for sk as it handles the data complexity more effectively, resulting in higher accuracy and F1-scores.this task
